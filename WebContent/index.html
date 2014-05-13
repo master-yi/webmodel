@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>项目说明</title>
+<style>
+<!--
+pre {
+	background: #f5f5f5;
+	border: 1px solid #e5e5e5;
+	padding: 0 10px;
+}
+
+b {
+	color: red;
+}
+-->
+</style>
+</head>
+<body>
+	<h1>
+		Servlet演示案例(简单范例)
+	</h1>
+	<hr />
+	<ol>
+		<li><a href="app">点击查看实例：显示一个h1</a></li>
+		<li>
+			<a href="#nav1">构造最简单的servlet</a>
+		</li>
+		<li>
+			<a href="#nav2">如何在web.xml中部署</a>
+		</li>
+		<li>
+			<a href="#nav3">在浏览器上访问</a>
+		</li>
+	</ol>
+	<h2 id="nav1">构造最简单的servlet——AppController</h2>
+	<p>
+		源码位置：<em>webmodel/src/ceit/web/Appcontroller.java</em>
+	</p>
+	<pre>
+package com.ceit.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class AppController extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
+	public void service(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		
+		response.setContentType("text/html;charset=utf-8");//<b>必须</b>，规定输出文件类型和字符集
+		PrintWriter pw = response.getWriter();//获得输出流
+		pw.println("&lt;h1&gt;你好！世界&lt;/h1&gt;");//在输出流中写入数据
+		pw.close();//<b>必须</b>，关闭输出流
+		
+	}
+}
+	</pre>
+	<h2 id="nav2">在web.xml中部署建立AppController</h2>
+	<ul>
+		<li>两个&lt;servlet-name&gt;中内容必须完全一致</li>
+		<li>&lt;url-pattern&gt;中的路径以"/开头"</li>
+	</ul>
+	<p>
+		源码位置：<em>webmodel/WebContent/WEB-INF/web.xml</em>
+	</p>
+	<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0"&gt;
+  &lt;display-name&gt;webmodel&lt;/display-name&gt;
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+  &lt;servlet&gt;
+  	&lt;servlet-name&gt;Application Controller 0.1&lt;/servlet-name&gt;
+  	&lt;servlet-class&gt;com.ceit.web.AppController&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+  	&lt;servlet-name&gt;Application Controller 0.1&lt;/servlet-name&gt;
+  	&lt;url-pattern&gt;/app&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;	
+	</pre>
+	<h2 id="nav3">在浏览器上访问</h2>
+	<ul>
+		<li>假设端口为默认端口8080</li>
+	</ul>
+
+	<pre>http://localhost:8080/webmodel/app</pre>
+
+	<hr/>
+	<p>	Copyright © 2011-2015,<a href="http://www.ibm-ceit.com">ibm-ceit创新中心</a>
+	</p>
+</body>
+</html>
