@@ -99,7 +99,7 @@ public class AppController extends HttpServlet {
 
 		<h2 id="nav2">问题：编写html页面太麻烦</h2>
 		<p>在Servlet中生成html页面本就是一件反人类的事情，html文档结构繁杂琐碎，大量的尖括号/双引号需要转义，
-			大家可以阅读index.html的代码，想想把这样一个页面用println一行行写出来是啥感觉，如果再加上css和js代码，工作量会是海量的。
+			大家可以阅读index.html的代码，想想把这样一个页面用println一行行写出来是啥感觉，如果再加上css和js代码，工作量不但是海量的还极易出错。
 		</p>
 		<p>
 			在这种状况下引入了JSP，其本质还是Servlet，只是这个Servlet专门负责生成HTML代码，并经过某种"转换"，
