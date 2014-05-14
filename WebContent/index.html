@@ -4,53 +4,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>项目说明</title>
-<style>
-<!--
-body {
-	font: normal 14px Helvetica, Microsoft Yahei, sans-serif;
-}
-
-pre {
-	background: #f5f5f5;
-	border: 1px solid #e5e5e5;
-	padding: 0 10px;
-}
-
-b {
-	color: red;
-}
-
-h2 {
-	border-top: 1px dotted #d5d5d5;
-	padding-top: 14px;
-}
--->
-</style>
+<link type="text/css" rel="stylesheet" href="css/base.css"/>
 </head>
 <body>
-	<h1>Servlet演示案例(简单范例)</h1>
-	<!-- nav -->
-	<ol>
-		<li><a href="#nav1">动手：编写简单servlet</a>
-			<ul>
-				<li><a href="#nav1-1">编写AppController.java</a></li>
-				<li><a href="#nav1-2">在web.xml中部署AppController</a></li>
-				<li><a href="#nav1-3">通过浏览器访问AppController</a></li>
-			</ul></li>
-		<li><a href="#nav2">新问题：徒手编写html页面的难度</a>
-			<ul>
-				<li><a href="#nav2-1">修改AppController.java,并编写jsp</a></li>
-				<li><a href="#nav1-2">在web.xml中部署AppController</a></li>
-				<li><a href="#nav2-3">通过浏览器访问AppController</a></li>
-			</ul></li>
-	</ol>
-	<h2 id="nav1">动手：编写servlet</h2>
-	<p></p>
-	<h3 id="nav1-1">编写AppController.java</h3>
-	<ul>
-		<li>AppController源码位置：<em>webmodel/src/ceit/web/Appcontroller.java</em></li>
-	</ul>
-	<pre>
+	<div class="container">
+		<h1>Servlet演示案例(简单范例)</h1>
+		<!-- nav -->
+		<ol>
+			<li><a href="#nav1">动手：编写简单servlet</a>
+				<ul>
+					<li><a href="#nav1-1">编写AppController.java</a></li>
+					<li><a href="#nav1-2">在web.xml中部署AppController</a></li>
+					<li><a href="#nav1-3">通过浏览器访问AppController</a></li>
+				</ul></li>
+			<li><a href="#nav2">新问题：使用println输出html页面的难度</a>
+				<ul>
+					<li><a href="#nav2-1">修改AppController.java,并编写jsp</a></li>
+					<li><a href="#nav1-2">在web.xml中部署AppController</a></li>
+					<li><a href="#nav2-3">通过浏览器访问AppController</a></li>
+				</ul></li>
+		</ol>
+		<h2 id="nav1">动手：编写servlet</h2>
+		<p></p>
+		<h3 id="nav1-1">编写AppController.java</h3>
+		<ul>
+			<li>AppController源码位置：<em>webmodel/src/ceit/web/Appcontroller.java</em></li>
+		</ul>
+		<pre>
 package com.ceit.web;
 
 import java.io.IOException;
@@ -68,7 +48,7 @@ public class AppController extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		response.setContentType("text/html;charset=utf-8");//<b>必须</b>，规定输出文件类型和字符集
+		response.setContentType("text/html;charset=utf-8");//<b>必须</b>，规定输出文件类型和字符集，这是html类型
 		PrintWriter pw = response.getWriter();//获得输出流
 		pw.println("&lt;h1&gt;你好！世界&lt;/h1&gt;");//在输出流中写入数据
 		pw.println("&lt;p&gt;这个页面很简单，但正如大家所见，它并不会预先写好并以html文本的形式存放于服务器&lt;/p&gt;");
@@ -81,14 +61,14 @@ public class AppController extends HttpServlet {
 	}
 }
 	</pre>
-	<h3 id="nav1-2">在web.xml中部署AppController，将url路径跟具体的类关联起来</h3>
-	<ul>
-		<li>web.xml位置：<em>webmodel/WebContent/WEB-INF/web.xml</em></li>
-		<li>AppController.java被配置为Application Controller 0.1</li>
-		<li>两个&lt;servlet-name&gt;中内容必须完全一致</li>
-		<li>&lt;url-pattern&gt;中的路径以"/开头"</li>
-	</ul>
-	<pre>
+		<h3 id="nav1-2">在web.xml中部署AppController，将url路径跟具体的类关联起来</h3>
+		<ul>
+			<li>web.xml位置：<em>webmodel/WebContent/WEB-INF/web.xml</em></li>
+			<li>AppController.java被配置为Application Controller 0.1</li>
+			<li>两个&lt;servlet-name&gt;中内容必须完全一致</li>
+			<li>&lt;url-pattern&gt;中的路径以"/开头"</li>
+		</ul>
+		<pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://java.sun.com/xml/ns/javaee"
@@ -110,49 +90,50 @@ public class AppController extends HttpServlet {
   &lt;/servlet-mapping&gt;
 &lt;/web-app&gt;	
 	</pre>
-	<h3 id="nav1-3">通过浏览器访问AppController</h3>
-	<ul>
-		<li>路径在web.xml中配置为/app</li>
-		<li><a href="app">点击查看实例</a></li>
-	</ul>
-	<pre>http://localhost:8080/webmodel/app</pre>
+		<h3 id="nav1-3">通过浏览器访问AppController</h3>
+		<ul>
+			<li>路径在web.xml中配置为/app</li>
+			<li><a href="app">点击查看实例</a></li>
+		</ul>
+		<pre>http://localhost:8080/webmodel/app</pre>
 
-	<h2 id="nav2">问题：编写html页面太麻烦</h2>
-	<p>在Servlet中生成html页面本就是一件反人类的事情，html文档结构繁杂琐碎，大量的尖括号/双引号需要转义，</p>
-	<p>大家可以阅读index.html的代码，想想把这样一个页面用println一行行写出来是啥感觉，如果再加上css和js代码，工作量会是海量的；</p>
-	<p>所以引入了JSP，其本质还是Servlet，只是这个Servlet专门负责生成HTML代码，并经过某种"转换"，让它看起来像嵌入了JAVA代码的HTML一样，</p>
-	<p>这样做的可以使得动态内容的生产和HTML页面的生产分开，各司其职，所谓"上帝归上帝，凯撒归凯撒"</p>
-	<p>
-		<b>在本例中，AppController就开始只负责生成动态数据，原来的HTML代码由result.jsp提供</b>
-	</p>
-	<p>
-		<em>*注：其实JSP是先于Servlet出现，我们这么分析是为了便于理解</em>
-	</p>
+		<h2 id="nav2">问题：编写html页面太麻烦</h2>
+		<p>在Servlet中生成html页面本就是一件反人类的事情，html文档结构繁杂琐碎，大量的尖括号/双引号需要转义，
+			大家可以阅读index.html的代码，想想把这样一个页面用println一行行写出来是啥感觉，如果再加上css和js代码，工作量会是海量的。
+		</p>
+		<p>
+			在这种状况下引入了JSP，其本质还是Servlet，只是这个Servlet专门负责生成HTML代码，并经过某种"转换"，
+			让它看起来像嵌入了JAVA代码的HTML一样，这样做的可以使得动态内容的生产和HTML页面的生产分开，各司其职，所谓"上帝归上帝，凯撒归凯撒"。
+			<b>在本例中，AppController就开始只负责生成动态数据，原来的HTML代码由result.jsp提供</b>
+		</p>
+		<p>
+			<em>*注：其实JSP是先于Servlet出现，我们这么分析是为了便于理解</em>
+		</p>
 
-	<h3 id="nav2-1">修改AppController.java,并编写jsp</h3>
-	<ul>
-		<li>修改后的AppController被保存成了AppController1.java</li>
-		<li>AppController源码位置：<em>webmodel/src/ceit/web/Appcontroller1.java</em></li>
-		<li>result.jsp源码位置：<em>webmodel/result.jsp</em></li>
-	</ul>
-	<p>Appcontroller关键代码</p>
-	<pre>
+		<h3 id="nav2-1">修改AppController.java,并编写jsp</h3>
+		<ul>
+			<li>修改后的AppController被保存成了AppController1.java</li>
+			<li>AppController源码位置：<em>webmodel/src/ceit/web/Appcontroller1.java</em></li>
+			<li>result.jsp源码位置：<em>webmodel/result.jsp</em></li>
+		</ul>
+		<p>Appcontroller关键代码</p>
+		<pre>
 //将实时生成的数据——也就是时间存入request对象中
 request.setAttribute("buildtime", sdf.format(new Date()));
 //使用requestDispacher对象将request转发到result.jsp中
 request.getRequestDispatcher("result.jsp").forward(request, response);
 	</pre>
-	<p>result.jsp的关键代码，可以跟原来的servlet代码比较一下</p>
-	<pre>
+		<p>result.jsp的关键代码，可以跟原来的servlet代码比较一下</p>
+		<pre>
 ……
 本页面生成时间为：&lt;%=request.getAttribute("buildtime") %&gt;
 ……
 	</pre>
-	<h3 id="nav2-2">在web.xml中部署AppController</h3>
-	<ul>
-	  <li>修改后的AppController1被配置成了Application Controller 0.2</li>
-	</ul>
-	<pre>
+		<h3 id="nav2-2">在web.xml中部署AppController</h3>
+		<ul>
+			<li>修改后的AppController1被配置成了Application Controller 0.2</li>
+		</ul>
+		<pre>
 &lt;!-- 修改后的AppController，只需要生成数据，拥有一个result.jsp专门显示页面 --&gt;
 &lt;servlet&gt;
 	&lt;servlet-name&gt;Application Controller 0.2&lt;/servlet-name&gt;
@@ -163,13 +144,14 @@ request.getRequestDispatcher("result.jsp").forward(request, response);
 	&lt;url-pattern&gt;/app1&lt;/url-pattern&gt;
 &lt;/servlet-mapping&gt;	
 	</pre>
-	<h3 id="nav2-3">通过浏览器访问AppController</h3>
-	<ul>
-		<li>修改后的AppController1在web.xml中配置为路径为/app1</li>
-		<li><a href="app1">点击查看实例</a></li>
-	</ul>
-	<pre>
+		<h3 id="nav2-3">通过浏览器访问AppController</h3>
+		<ul>
+			<li>修改后的AppController1在web.xml中配置为路径为/app1</li>
+			<li><a href="app1">点击查看实例</a></li>
+		</ul>
+		<pre>
 http://localhost:8080/webmodel/app1	
 	</pre>
+	</div>
 </body>
 </html>
